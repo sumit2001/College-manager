@@ -1,0 +1,132 @@
+<!-- <form (submit)=saveData($event)>
+    <div class="container">
+        
+    <div>
+        <div>Enter Name</div>
+        <input type="text" id="name" required>
+    </div>
+    <div>
+        <div>Enter Teacher Id</div>
+        <input type="number"  id="rollno" required>
+    </div>
+    <div>
+        <div>Enter Class (Only from 1 to 12)</div>
+        <input type="number" min="1" max="12"  id="class" required>
+    </div>
+    <div>
+        <div>Enter Section  (Only from A to F)</div>
+        <input minlength="1" maxlength="1" required onkeypress="return (event.charCode > 64 && event.charCode < 71) || (event.charCode > 96 && event.charCode < 103)" type="text"  id="section">
+    </div>
+    <div>
+        <button type="submit" id="submit">Submit</button>
+    </div>
+    </div>
+</form> -->
+<!-- <div formArrayName="items">
+  <div>
+    <input formControlName="name" placeholder="Teacher Name">
+    <input formControlName="id" placeholder="Teacher Id">
+    <div *ngFor="let item of orderForm.get('items').value; let i = index;">
+  <div [formGroupName]="i">
+    <input formControlName="sclass" placeholder="Class">
+    <input formControlName="section" placeholder="Section">  
+</div>      
+</div>
+  </div>
+
+</div> -->
+<form [formGroup]="orderForm" (submit)=saveData() novalidate>
+    <div class="form-group">
+        <label>Name:</label>
+        <input class="form-control" formControlName="name" type="text">
+    </div>
+    <div *ngIf="orderForm.controls['name'].invalid && (orderForm.controls['name'].dirty || orderForm.controls['name'].touched)" class="alert alert-danger">
+        <div *ngIf="orderForm.controls['name'].errors.required">
+          Name is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Teacher Id:</label>
+        <input class="form-control" formControlName="id" type="text">
+    </div>
+    <div *ngIf="orderForm.controls['id'].invalid && (orderForm.controls['id'].dirty || orderForm.controls['id'].touched)" class="alert alert-danger">
+        <div *ngIf="orderForm.controls['id'].errors.required">
+          ID is required.
+        </div>
+    </div>
+    <!-- <div class="form-group"> -->
+    <!-- <input class="form-control" type="text" formControlName="name" id="name" placeholder="Name"> -->
+    <!-- <control-messages [control]="orderform.get('name')"></control-messages> -->
+    <!-- <input class="form-control" formControlName="id" placeholder="Teacher Id"> -->
+<!-- </div> -->
+    <div formArrayName="items"
+  *ngFor="let item of orderForm.get('items').value; let i = index;">
+  <div [formGroupName]="i">
+    
+    <div class="form-group">
+        <label>Class</label>
+        <input class="form-control" formControlName="sclass" type="number">
+    </div>
+    <!-- <div *ngIf="orderForm.controls['sclass'].invalid && (orderForm.controls['sclass'].dirty || orderForm.controls['sclass'].touched)" class="alert alert-danger">
+        <div *ngIf="orderForm.controls['sclass'].errors.required">
+          Class is required.
+        </div>
+    </div> -->
+
+    
+    <div class="form-group">
+        <label>Section</label>
+        <input class="form-control" formControlName="section" type="text">
+    </div>
+    <!-- <div *ngIf="orderForm.controls['section'].invalid && (orderForm.controls['section'].dirty || orderForm.controls['section'].touched)" class="alert alert-danger">
+        <div *ngIf="orderForm.controls['section'].errors.required">
+         Section is required.
+        </div>
+    </div> -->
+
+
+    <!-- <input class="form-control" formControlName="sclass" placeholder="Class"> -->
+    <!-- <input  class="form-control" formControlName="section" placeholder="Section"> -->
+<a (click)="deleteItem(i)">Delete</a>
+    
+</div>
+</div>
+<a (click)="addItem()">Add</a>
+<button [disabled]="orderForm.pristine || orderForm.invalid" type="submit">Submit</button>
+</form>
+<table class="col-8">
+    <thead class="col-8">
+        <th>Name</th>
+        <th>Teacher Id</th>
+        <th>Class</th>
+        <th>Section</th>
+    </thead>
+    <tbody class="col-8" style="border:1px solid black">
+        <tr  *ngFor="let data of teacherData;let id=index" >
+        <td *ngIf="data.name" (blur)="updateList(data._id,id,'name', $event)" contenteditable="true">{{data.name}}</td>
+        <td *ngIf="!data.name"  (blur)="updateList(data._id,id,'name', $event)" contenteditable="true">-</td>
+        <td *ngIf="data.id"  (blur)="updateList(data._id,id,'id', $event)" contenteditable="true">{{data.id}}</td>
+        <td *ngIf="!data.id"  (blur)="updateList(data._id,id,'id', $event)" contenteditable="true">-</td>
+        <!-- <div *ngFor="let data of data.cs;let sid=index"> -->
+        <!-- <td *ngFor="data.sclass"  (blur)="updateList(data._id,id,'sclass', $event)" contenteditable="true"><div *ngFor="let data of data.cs">{{data.sclass}}</div></td> -->
+        <!-- <td *ngIf="!data.sclass"  (blur)="updateList(data._id,id,'sclass', $event)" contenteditable="true">-</td>
+        <td *ngIf="data.section"  (blur)="updateList(data._id,id,'section', $event)" contenteditable="true">{{data.section}}</td>
+        <td *ngIf="!data.section"  (blur)="updateList(data._id,id,'section', $event)" contenteditable="true">-</td> -->
+    <!-- </div> -->
+    <table>
+        <!-- <thead>
+            <th>Class</th>
+            <th>Section</th>
+        </thead> -->
+        <tbody  *ngFor="let d of data.cs;let j=index">
+            <td *ngIf="d.sclass" (blur)="updateInnerList(data._id,d._id,'sclass', $event,id,j)" contenteditable="true">{{d.sclass}}</td>
+            <td *ngIf="!d.sclass" (blur)="updateInnerList(data._id,d._id,'sclass', $event,id,j)" contenteditable="true">-</td>
+            <td *ngIf="d.section" (blur)="updateInnerList(data._id,d._id,'section', $event,id,j)" contenteditable="true">{{d.section}}</td>
+            <td *ngIf="!d.section" (blur)="updateInnerList(data._id,d._id,'section', $event,id,j)" contenteditable="true">-</td>
+
+        </tbody>
+    </table>
+        <td (click)="deleteUser(data._id)" style="cursor:pointer"><i class="fa fa-trash" aria-hidden="true"></i></td>
+    </tr>
+    </tbody>
+</table>

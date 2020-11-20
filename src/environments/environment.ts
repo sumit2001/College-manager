@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false
+  // name:"test",
+  // apiBaseUrl:"http://studentteacher.com"
 };
 
 /*
