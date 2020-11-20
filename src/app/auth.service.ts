@@ -10,7 +10,7 @@ interface studentResponse{
 })
 export class AuthService {
   // hangmanServer= environment.apiBaseUrl;
-  hangmanServer="http://localhost:8080";
+  hangmanServer="https://whispering-inlet-08924.herokuapp.com";
   constructor(private http: HttpClient){}
   saveStudentData(name,rollno,sclass,section){
     console.log("coming",name,rollno,sclass,section);
@@ -23,39 +23,39 @@ export class AuthService {
   }
   delStudentData(data){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.post(`/api/student/deleteData`,data)
+    return this.http.post(`${this.hangmanServer}/api/student/deleteData`,data)
   }
   
   updateStudentData(data){
     console.log("coming",data);
 
-    return this.http.post(`/api/student/update`,data)
+    return this.http.post(`${this.hangmanServer}/api/student/update`,data)
   }
 
   loadStudentData(){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.get(`/api/student`)
+    return this.http.get(`${this.hangmanServer}/api/student`)
   }
 
   saveTeacherData(temp){
     console.log("coming",temp);
-    return this.http.post(`/api/teacher`,temp)
+    return this.http.post(`${this.hangmanServer}/api/teacher`,temp)
   }
 
   loadTeacherData(){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.get(`/api/teacher`)
+    return this.http.get(`${this.hangmanServer}/api/teacher`)
   }
   delTeacherData(data){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.post(`/api/teacher/deleteData`,data,{responseType: 'text'})
+    return this.http.post(`${this.hangmanServer}/api/teacher/deleteData`,data,{responseType: 'text'})
   
   }
 
   updateTeacherData(data){
     console.log("coming",data);
 
-    return this.http.post(`/api/teacher/update`,data)
+    return this.http.post(`${this.hangmanServer}/api/teacher/update`,data)
   }
   // ${this.hangmanServer}
 }
