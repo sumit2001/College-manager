@@ -23,38 +23,39 @@ export class AuthService {
   }
   delStudentData(data){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.post(`${this.hangmanServer}/api/student/deleteData`,data)
+    return this.http.post(`/api/student/deleteData`,data)
   }
   
   updateStudentData(data){
     console.log("coming",data);
 
-    return this.http.post(`${this.hangmanServer}/api/student/update`,data)
+    return this.http.post(`/api/student/update`,data)
   }
 
   loadStudentData(){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.get(`${this.hangmanServer}/api/student`)
+    return this.http.get(`/api/student`)
   }
 
   saveTeacherData(temp){
     console.log("coming",temp);
-    return this.http.post(`${this.hangmanServer}/api/teacher`,temp)
+    return this.http.post(`/api/teacher`,temp)
   }
 
   loadTeacherData(){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.get(`${this.hangmanServer}/api/teacher`)
+    return this.http.get(`/api/teacher`)
   }
   delTeacherData(data){
     // console.log("coming",name,rollno,sclass,section);
-    return this.http.post(`${this.hangmanServer}/api/teacher/deleteData`,data,{responseType: 'text'})
+    return this.http.post(`/api/teacher/deleteData`,data,{responseType: 'text'})
   
   }
 
   updateTeacherData(data){
     console.log("coming",data);
 
-    return this.http.post(`${this.hangmanServer}/api/teacher/update`,data)
+    return this.http.post(`/api/teacher/update`,data)
   }
+  // ${this.hangmanServer}
 }
