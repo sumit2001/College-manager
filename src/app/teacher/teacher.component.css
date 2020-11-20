@@ -1,0 +1,19 @@
+h3{
+    background-color: blueviolet;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    padding: 11px;
+}
+
+thead{
+    background-color: saddlebrown;
+    color: white;
+    /* border-radius: 16px; */
+    text-align: center;
+}
+
+tr{
+    border:1px solid black;
+    line-height: 46px;
+}

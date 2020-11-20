@@ -54,9 +54,10 @@ teacherData:any;
     }
     console.log(data);
     this.auth.delTeacherData(data).subscribe(data=>{
+  this.getapi();
+      
       console.log(data); 
   })
-  this.getapi();
   }
 
 
@@ -130,9 +131,10 @@ updateInnerList(id,i,sec,event,j,k){
   console.log(temp)
 
     this.auth.saveTeacherData(temp).subscribe(data=>{
+      this.getapi();
+
       console.log(data);
     })
-    this.getapi();
   }
   
 }

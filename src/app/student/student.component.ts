@@ -29,10 +29,11 @@ saveData(event){
     console.log("Coming",name,rollno,sclass,section);
 
     this.auth.saveStudentData(name,rollno,sclass,section).subscribe(data=>{
-    console.log(data);
+  this.ngOnInit();
+    
+      console.log(data);
   })
   
-  this.ngOnInit();
   
   }
   else{
@@ -82,8 +83,9 @@ deleteUser(id){
   }
   this.auth.delStudentData(data).subscribe(data=>{
     console.log(data); 
+    this.ngOnInit();
 })
-this.ngOnInit();
+
 }
 
 
